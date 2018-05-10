@@ -1,50 +1,37 @@
-/*
-Insert Node in a doubly sorted linked list
-After each insertion, the list should be sorted
-Node is defined as
-
-struct Node
-{
-int data;
-Node *next;
-Node *prev;
-}
-*/
-
-# include "stdafx.h"
-#include <iostream>
-#include "SortedInsert.h"
-
-
-Node* SortedInsert(Node *head, int data)
-{
-	Node *node = new Node();
-	node->data = data;
-
-	if (head == nullptr) {
-		return node;
-	}
-	else if (head ->data > data) {
-		node -> next = head;
-		return node;
-	}
+Node* SortedInsert(Node *head, int data) {
 
 	Node *curr = head;	
-	while (curr->next != nullptr) {
-		if (curr->next->data > data) {
+    Node *prev = nullptr;
+	
+    
+    //find curr
+	while (curr != nullptr) {
+		if (curr->data > data) {
 			break;
-		}
+		}       
+        prev = curr;
 		curr = curr->next;
-	}
-	node->next = curr->next;
-	curr->next = node;
-	return head;
-}
+	}    
 
-void printList(Node *head) {
-	while (head != nullptr) {
-		std::cout << head->data << "->";
-		head = head->next;
-	}
-	std::cout << "END" << std::endl;
+	Node *node = new Node();
+	node->data = data;
+    
+    //if prev is null, node becomes new head    
+    if(prev == nullptr) {
+        node -> next = curr;
+		if (curr != nullptr) {
+        	curr -> prev = node;
+		}
+        return node;
+    }
+    
+    //insert node after prev 
+    prev->next = node;        
+    node->prev = prev; 
+
+    node->next = curr;
+    if (curr != nullptr) {
+        curr->prev = node;    
+    }                
+	return head;
 }
