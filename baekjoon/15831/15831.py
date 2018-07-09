@@ -4,22 +4,27 @@ road = input()
 wc = 0
 bc = 0
 maxLen = 0
-walk = []
+left = 0
+length = 0
 
 for c in road:
-    walk.append(c)
+    length += 1
+
     if c == 'W':
         wc += 1
     else:
         bc += 1
+    
     while bc > b:
-        r = walk[0]
-        walk = walk[1:]
+        r = road[left]        
         if r == 'W':
             wc -= 1
         else:
-            bc -= 1        
-    if wc >= w and len(walk) > maxLen:
-        maxLen = len(walk)  
-    # print(c, walk, wc, bc, maxLen)
+            bc -= 1   
+        left += 1 
+        length -= 1
+        
+    if wc >= w and length > maxLen:
+        maxLen = length  
+    # print(c, wc, bc, length)
 print(maxLen)
