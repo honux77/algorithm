@@ -3,9 +3,12 @@
 
 using namespace std;
 
+//https://www.acmicpc.net/problem/1149
+//RGB 거리
+//평범한 DP 문제
+
 enum Color {red, green, blue};
 int d[1001][3];
-int rgb[1001][3];
 
 int minValue(int idx, Color exclude) {
 	if (idx == 0) {
@@ -26,11 +29,12 @@ int main() {
 	int n;
 	cin >> n;
 
+	int rgb[3];
 	for (int i = 1; i <= n; i++) {
-		cin >> rgb[i][red] >> rgb[i][green] >> rgb[i][blue];		
+		cin >> rgb[red] >> rgb[green] >> rgb[blue];		
 		for (int j = red; j <= blue; j++) {
 			Color color = static_cast<Color>(j);
-			d[i][color] = minValue(i - 1, color) + rgb[i][color];
+			d[i][color] = minValue(i - 1, color) + rgb[color];
 		}
 	}
 

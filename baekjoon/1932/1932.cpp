@@ -3,36 +3,22 @@
 # include <iostream>
 # include <algorithm>
 
+//BOJ 1932 정수삼각형
+//DP로 금방 풀린다
+// https://www.acmicpc.net/problem/1932
+
 using namespace std;
 
-int input[501][501];
 int d[501][501];
 
-int getMax(int i, int j) {
-	if (j == 0) {
-		return d[i - 1][j];
-	} else {
-		return max(d[i - 1][j - 1], d[i - 1][j]);
-	}
-}
-
 int main() {
-
-	memset(input, 0, sizeof(input));
-	memset(d, 0, sizeof(d));
-
-	int n;
-	cin >> n;
+	int n, input;
+	cin >> n;	
 
 	for (int i = 1; i <= n; i++) {
 		for (int j = 1; j <= i; j++) {
-			cin >> input[i][j];
-		}
-	}
-
-	for (int i = 1; i <= n; i++) {
-		for (int j = 1; j <= i; j++) {
-			d[i][j] = input[i][j] + getMax(i, j);
+			cin >> input;
+			d[i][j] = input + max(d[i - 1][j - 1], d[i - 1][j]);
 		}
 	}
 	
