@@ -11,7 +11,7 @@ public class Main {
         BufferedReader bi = new BufferedReader(new InputStreamReader(System.in));
 
         Stack<Character> lstack = new Stack <Character>();
-        Stack <Character> rstack = new Stack <Character>();
+        Stack<Character> rstack = new Stack <Character>();
 
         for (char c: bi.readLine().toCharArray()) {
             lstack.push(c);
