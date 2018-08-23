@@ -5,7 +5,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Stack;
 
-public class Main {
+public class 1406-Editor {
 
     public static void main(String[] args) throws IOException {
         BufferedReader bi = new BufferedReader(new InputStreamReader(System.in));
