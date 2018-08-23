@@ -8,19 +8,19 @@ using namespace std;
 
 int main() {
 	vector <int> lotto;
-	int i;
-
 	srand(time(NULL));
 
-	for (i = 0; i < 45; i++) {
+	for (int i = 0; i < 45; i++) {
 		lotto.push_back(i + 1);
 	}
 
 	random_shuffle(lotto.begin(), lotto.end());
 	sort(lotto.begin(), lotto.begin() + 6);
 
-	for (i = 0; i < 5; i++) {
-		printf("%d ", lotto[i]);		
-	}
+    int i = 0;
+    while (i < 5) {
+        printf("%d ", lotto[i]);	
+        i++;
+    }	
 	printf("%d\n", lotto[i]);
 }
