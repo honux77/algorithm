@@ -5,7 +5,7 @@ using namespace std;
 int d[101][101][2];
 
 void solve() {
-    d[1][0][0] = 1;
+    d[1][0][0] = 1; //n = 1, k = 0, lastBit = 0
     d[1][0][1] = 1;
     for (int n = 2; n <= 100; n++) {        
         for (int k = 0; k < n; k++) {            
