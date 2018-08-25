@@ -1,33 +1,19 @@
+# http://codeforces.com/contest/1029/problem/A
+
 n, k = [int(i) for i in input().split(" ")]
 word = input()
 
-length = 0
-allsame = True
+s = 0
+for i in range(1, n):
+    if word[:i] == word[-i:]:
+        s = i
 
-f = word[0]
-for w in word:
-    if w != f:
-        allsame =False
+prefix = word[:-s] if s > 0 else word
+suffix = word[-s:] if s > 0 else ""
 
-if allsame:
-    ans = word
-    for i in range(k - 1):
-        ans += f
-else:        
-    for i in range(1, len(word) // 2 + 1):
-        if word[:i] == word[-i:]:
-            length = i
-
-    ans = ""
-    if length > 0:
-        common = word[:-length]
-    else:
-        common = word
-
-    for i in range(k):
-        ans += common    
-
-    if length > 0:
-        ans += word[-length:]
+ans = ""
+for i in range(k):
+    ans += prefix
+ans += suffix
 
 print(ans)
