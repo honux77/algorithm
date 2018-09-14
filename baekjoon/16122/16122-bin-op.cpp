@@ -2,33 +2,43 @@
 
 #include <iostream>
 #include <vector>
-#include <map>
+#include <unordered_map>
 
 #define INF 998244353
-using ll = long long;
 
 using namespace std;
-vector<map<int, ll>> d;
+vector<unordered_map<int, int>> d;
 int n, m;
 
-inline map<int, ll>::iterator get(int r, int c)
+int get(int r, int c)
 {
-    return d[r].find(c);
+    if(r == 0 && c == 0) {
+        return 1;
+    } else if (r == 0 && c != 0) {
+        return 0;
+    }
+    unordered_map<int, int>::iterator it = d[r].find(c);
+    if(it == d[r].end()) {
+        return -1;
+    } else {
+        return it->second;
+    }
 }
 
-inline void set(int r, int c, ll v)
+inline void set(int r, int c, int v)
 {
     d[r][c] = v;
 }
 
-ll solve(int n, int m)
+int solve(int n, int m)
 {
-    if (get(n, m) == d[n].end())
+    int v = get(n, m);
+    if (v == -1) 
     {
-        ll v = (solve(n - 1, -m) + solve(n - 1, -m - 1)) % INF;
+        v = (solve(n - 1, -m) + solve(n - 1, -m - 1)) % INF;
         set(n, m, v);
     }
-    return get(n, m)->second;
+    return v;
 };
 
 int main()
@@ -37,15 +47,8 @@ int main()
     cin.tie(nullptr);
 
     cin >> n >> m;
-
     d.resize(n + 1);
-
-    for (int i = -n; i <= n; i++)
-    {
-        set(0, i, 0);
-    }
-    set(0, 0, 1);
-    ll ans = solve(n, m);
+    int ans = solve(n, m);
     cout << ans << endl;
     return 0;
 }
