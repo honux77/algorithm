@@ -9,12 +9,12 @@ void mysort(vector<int> &a) {
 	int n = a.size();
 	for (int i = 1; i < n; i++) {
 		int v = a[i];
-		int j = i - 1;		
-		while (j >= 0 && v < a[j]) {
-			a[j + 1] = a[j];
+		int j = i;		
+		while (j > 0 && a[j - 1] > v) {
+			a[j] = a[j - 1];
 			j--;
 		}						
-		a[j + 1] = v;
+		a[j] = v;
 	}
 }
 
