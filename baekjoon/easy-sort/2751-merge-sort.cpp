@@ -3,23 +3,8 @@
 
 using namespace std;
 
-static int M = 6;
-
-//use insertion sort when size is less than 10
-static void insertionsort(int a[], int l, int r) {
-	int i, j, temp;
-	for (int i = l; i <= r; i++) {
-		temp = a[i];
-		j = i;
-		while (j > 0 && a[j - 1] > temp) {
-			a[j] = a[j - 1];
-			j--;
-		}
-		a[j] = temp;
-	}
-}
-
-static void myMerge(int arr[], int temp[], int left, int middle, int right) {
+static void myMerge(vector<int> &arr, vector<int> &temp, 
+		int left, int middle, int right) {
 	for (int i = left; i <= right; i++) {
 		temp[i] = arr[i];
 	}
@@ -45,9 +30,8 @@ static void myMerge(int arr[], int temp[], int left, int middle, int right) {
 	}
 }
 
-static void _mergesort(int a[], int t[], int l, int r) {
-    if (r - l <= M) {
-		insertionsort(a, l, r);
+static void _mergesort(vector<int> &a, vector<int> &t, int l, int r) {
+    if (l >= r) {
         return;
     }
 
@@ -57,10 +41,10 @@ static void _mergesort(int a[], int t[], int l, int r) {
 	myMerge(a, t, l, m, r);
 }
 
-void mergesort(int a[], int size) {
-	int *temp = new int[size];
-	_mergesort(a, temp, 0, size - 1);
-	delete []temp;
+void mergesort(vector<int> &a) {
+	int n = a.size();
+	vector<int> temp(n);
+	_mergesort(a, temp, 0, n - 1);
 }
 
 int main() {
@@ -68,17 +52,16 @@ int main() {
 	cin.tie(nullptr);
 	int n;
 	cin >> n;
-	int *a = new int[n];
+	vector <int> a(n);
 
 	for (int i = 0; i < n ; i++) {
 		cin >> a[i];
 	}
 
-	mergesort(a, n);
-	for (int i = 0; i < n; i++) {
-		cout << a[i] << "\n";
+	mergesort(a);
+	for (auto i: a) {
+		cout << i << "\n";
 	}
 
-	delete []a;
 	return 0;
 }
