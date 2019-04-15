@@ -1,60 +1,50 @@
 #include <string.h>
 #include <stdio.h>
 #include <iostream>
+#include <vector>
 
 using namespace std;
 const int pmax = 10000;
 
 bool p[pmax + 1];
+vector<int> pnums;
 
 void filter() {
 	memset(p, true, pmax + 1);
 	for (int i = 2; i <= pmax; i++) {
 		if (!p[i]) continue;
+		pnums.push_back(i);
 		for (int j = i * 2; j <= pmax; j += i) {
 			p[j] = false;
 		}
 	}
 }
 
-void nextLeft(int &left) {
-	do {
-		left++;
-	} while(!p[left]);
-}
-
-void nextRight(int &right) {
-	do {
-		right--;
-	} while(!p[right]);
-}
-
 void solve() {
 	int n;
 	cin >> n;
-	int left = 2;
-	int right = n - left;
-	int lp = 0, rp = 0;
+	int l = 0, r = pnums.size() - 1;
+	int ml = l, mr = r;
 	int mdiff = pmax + 1;
 
-	nextRight(right);
-	while(left <= right) {
-		int sum = left + right;
+	while(l <= r) {
+		//printf("%d %d\n", p[l], p[r]);
+		int sum = pnums[l] + pnums[r];
 		if (sum < n) {
-			nextLeft(left);
+			l++;
 		} else if (sum > n) {
-			nextRight(right);
+			r--;
 		} else {
-			if (mdiff > (right - left)) {
-				mdiff = right - left;
-				lp = left;
-				rp = right;
+			if (mdiff > (pnums[r] - pnums[l])) {
+				mdiff = pnums[r] - pnums[l];
+				ml = l;
+				mr = r;
 			}
-			nextLeft(left);
-			nextRight(right);
+			l++;
+			r--;
 		}
 	}
-	printf("%d %d\n", lp, rp);
+	printf("%d %d\n", pnums[ml], pnums[mr]);
 }
 
 int main()
