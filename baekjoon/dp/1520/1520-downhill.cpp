@@ -20,16 +20,14 @@ int main() {
 			int u;
 			scanf("%d", &u);
 			c[i][j] = u;
-			rank.push_back(make_tuple(u, i, j));
+			rank.emplace_back(u, i, j);
 		}
 	}
 
 	sort(rank.begin(), rank.end());
 	d[1][1] = 1;
 	for (int idx = rank.size() - 1; idx >= 0; idx--) {
-		int r = get<0>(rank[idx]);
-		int i = get<1>(rank[idx]);
-		int j = get<2>(rank[idx]);
+		auto [r, i, j] = rank[idx];
 		if (i > 1 && c[i][j] < c[i - 1][j]) d[i][j] += d[i - 1][j];
 		if (i < m && c[i][j] < c[i + 1][j]) d[i][j] += d[i + 1][j];
 		if (j > 1 && c[i][j] < c[i][j - 1]) d[i][j] += d[i][j - 1];
