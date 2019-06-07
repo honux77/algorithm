@@ -23,7 +23,7 @@ int main() {
 	int n;
 	cin >> n;
 	int count = 0;
-	for (int i = 1; i <= 10000; i++) {
+	for (int i = 1; i <= 2000000000; i++) {
 		if (check(i)) {
 			count++;
 			if (count == n) {
