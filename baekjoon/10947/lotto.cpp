@@ -24,3 +24,4 @@ int main() {
     }	
 	printf("%d\n", lotto[i]);
 }
+
