@@ -50,6 +50,6 @@ public class Main {
 			a = nextPrime(a);
 			b = num - a;
 		}
-		System.out.printf("%d + %d = %d\n", a, b, num);
+		System.out.printf("%d = %d + %d\n",num, a, b);
 	}
 }
