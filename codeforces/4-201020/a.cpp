@@ -21,12 +21,12 @@ int next(int num, int d) {
 }
 
 void solve() {
-    int n;
-    cin >> n;
+    int n, d;    
     int s = 1;
-    int e = 9999;
+    int e = 9999; 
+    cin >> n;
     int ans = dcount(n);
-    int d = 0;
+    
     while (d != n) {        
         d = s;
         while (d <= e && d != n) {
@@ -44,7 +44,6 @@ int main()
     cin.tie(nullptr);
     
     int n;
-    string s;
     cin >> n;    
     for (int i = 0; i < n; i++)    
         solve();    
