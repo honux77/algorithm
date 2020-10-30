@@ -28,12 +28,16 @@ void solve() {
     int n;
     cin >> n;
     vector<int> b(n);
-    for (int i = 0; i < n; i++) {
-        cin >> b[i];
+    int mx = 0;
+    for (auto &p : b) {
+        cin >> p;
+        mx = max(mx, p);
     }
+
     for (int i = 0; i < n; i++) {
-        bool ans = dominant(b, i);
-        if (ans) {
+        bool find = false;
+        if (b[i] == mx) find = dominant(b, i);
+        if (find) {
             cout << i + 1<< "\n";
             return;
         }
@@ -46,9 +50,9 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     
-    int n;
-    cin >> n;
-    for (int i = 0; i < n; i++) 
+    int t;
+    cin >> t;
+    while (t--) 
         solve();
     return 0;
 }
