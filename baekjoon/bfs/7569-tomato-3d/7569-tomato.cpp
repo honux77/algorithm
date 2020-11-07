@@ -23,16 +23,16 @@ struct Point {
 
 void bfs(queue<Point> &q, int n, int m, int h) {
     while (!q.empty()) {
-        Point p = q.front();
+        auto [pi, pj, pk] = q.front();
         q.pop();        
 
         for (int i =0; i < 6; i++) {
-            int ni = p.i + dr[i];
-            int nj = p.j + dc[i];
-            int nk = p.k + dh[i];
+            int ni = pi + dr[i];
+            int nj = pj + dc[i];
+            int nk = pk + dh[i];
             if (ni < 0 || ni >= n || nj < 0 || nj >= m || nk < 0 || nk >= h) continue;
             if (a[ni][nj][nk] == -1 || a[ni][nj][nk] > 0) continue;            
-            a[ni][nj][nk] = a[p.i][p.j][p.k] + 1;
+            a[ni][nj][nk] = a[pi][pj][pk] + 1;
             q.push({ni, nj, nk});
         }        
     }
