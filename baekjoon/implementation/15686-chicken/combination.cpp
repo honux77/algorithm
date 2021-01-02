@@ -19,7 +19,7 @@ void combination(int offset, int r) {
 
     for (int i = offset; i <= a.size() - r; i++) {
         buffer.push_back(a[i]);
-        combination(offset + 1, r - 1);
+        combination(i + 1, r - 1);
         buffer.pop_back();
     }
 }
@@ -30,7 +30,7 @@ int main()
     cin.tie(nullptr);
 
     combination(0, 10);  
-    for (auto v: result) {
+    for (auto &v: result) {
         for (auto i: v) {
             cout << i << " ";
         }
