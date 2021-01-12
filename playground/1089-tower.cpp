@@ -14,11 +14,14 @@ vector<string> d = {
     "###...#.###.###...#.###.###...#.###.###"
 };
 
+//final result
 vector<int> nums;
+//temp for store num
 vector<int> buf;
+//candidate num
+vector<vector<int>> a;
 
-void _permutations(vector<vector<int>> &a, int i, int j) {
-
+void _permutations(int i, int j) {
     buf.push_back(a[i][j]); 
 
     if (i == a.size() - 1 ) {
@@ -32,25 +35,25 @@ void _permutations(vector<vector<int>> &a, int i, int j) {
         //cerr << n << endl;    
     } else {
         for (int k = 0; k < a[i + 1].size(); k++) {
-            _permutations(a, i + 1, k);
+            _permutations(i + 1, k);
         }
     }
     buf.pop_back();
 }
 
-void permutations(vector<vector<int>> &a) {
+void permutations() {
     for (int i = 0; i < a[0].size(); i++) {
-        _permutations(a, 0, i);
+        _permutations(0, i);
     }    
 }
 
-vector<int> match(vector<string> &a, int pos) {        
+vector<int> match(vector<string> &s, int pos) {        
     vector<int> ans;
     for (int k = 0; k <= 9; k++) {
         bool match = true;
         for (int i = 0; i < 5 && match; i++) {
             for (int j = 0; j < 3; j++) {
-                if (!(a[i][pos * 4 + j] == '.' || a[i][pos * 4 + j] == d[i][k * 4 + j])) {
+                if (!(s[i][pos * 4 + j] == '.' || s[i][pos * 4 + j] == d[i][k * 4 + j])) {
                     match = false;                
                 }             
             }
@@ -61,18 +64,17 @@ vector<int> match(vector<string> &a, int pos) {
 }
 
 //n: input string, size: n
-double possbile(vector <string> &a, int n) {
-    vector<vector<int>> out;
+double possbile(vector <string> &s, int n) {
     for (int i = 0; i < n; i++) {
-        out.push_back(match(a, i));
+        a.push_back(match(s, i));
     }   
 
-    permutations(out);
+    permutations();
     
     if (nums.empty()) return -1;
-    double s = 0;
-    for (auto i: nums) s += i;
-    return s / nums.size();
+    double sum = 0;
+    for (auto i: nums) sum += i;
+    return sum / nums.size();
 }
 
 int main()
