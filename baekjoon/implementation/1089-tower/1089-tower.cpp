@@ -14,11 +14,7 @@ vector<string> d = {
     "###...#.###.###...#.###.###...#.###.###"
 };
 
-//final result
-vector<int> nums;
-//temp for store num
-vector<int> buf;
-//candidate num
+//candidate nums
 vector<vector<int>> a;
 
 vector<int> match(vector<string> &s, int pos) {        
