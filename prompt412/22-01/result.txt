@@ -1,0 +1,3 @@
+Compile 14502-virus.cpp..
+Run 14502-virus.cpp..
+./run.sh: line 27: 17947 Segmentation fault      ./a.out < input.txt
