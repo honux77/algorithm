@@ -4,7 +4,9 @@
 #include <algorithm>
 
 using namespace std;
-using ull = long long int;
+using i64 = long long int;
+using ii = pair<int, int>;
+using ii64 = pair<i64, i64>;
 
 int main()
 {
