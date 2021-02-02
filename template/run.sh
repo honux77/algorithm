@@ -14,7 +14,7 @@ case $ext in
     javac $1
     ;;
     cpp)
-    g++ $1
+    g++ $1 -std=c++17
     ;;
 esac    
 
@@ -24,13 +24,16 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Run $1.."
+
+INPUT=$filename.txt
+echo Input file: $INPUT
 case $ext in
     java)
-    java $filename < input.txt
+    java $filename < $INPUT
     ;;
     cpp)
-    ./a.out < input.txt
+    ./a.out < $INPUT
     ;;
     py)
-    python3 $1 < input.txt
+    python3 $1 < $INPUT
 esac
