@@ -31,9 +31,11 @@ int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-
-	int a, b, c;
-	cin >> a >> b >> c;
-	cout << a + b + c << endl;
+    
+    int n, m;
+    cin >> n >> m;
+    if (m == 1 || m == 2) cout << "NEWBIE!\n";
+    else if (m <= n) cout << "OLDBIE!\n";
+    else cout << "TLE!\n";
     return 0;
 }

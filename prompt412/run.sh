@@ -14,7 +14,7 @@ case $ext in
     javac $1
     ;;
     cpp)
-    g++ $1
+    g++ $1 -std=c++17
     ;;
 esac    
 
