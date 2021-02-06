@@ -23,14 +23,16 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
+INPUT=${filename}.txt
+
 echo "Run $1.."
 case $ext in
     java)
-    java $filename < $filename-input.txt
+    java $filename < $INPUT
     ;;
     cpp)
-    ./a.out < $filename-input.txt
+    ./a.out < $INPUT
     ;;
     py)
-    python3 $1 < $filename-input.txt
+    python3 $1 < $INPUT
 esac
