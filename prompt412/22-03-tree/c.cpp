@@ -27,46 +27,43 @@ using i64 = long long int;
 using ii = pair<int, int>;
 using ii64 = pair<i64, i64>;
 
-void init(vector<int> &pre, vector<int> &ino) {
+
+vector<int> pre;
+vector<int> ino;
+
+void init() {
     pre.clear();
     ino.clear();
 }
 
-int findRoot(vector<int> &pre, vector <int> &ino) {
-    for (auto &v: pre) {
-        if (find(ino.begin(), ino.end(), v) != ino.end()) {
-            return v;
-        }
+void postorder(int pl, int il, int size) {    
+    int root = pre[pl];
+    int idx = il;
+    for(; idx < il + size; idx++) {
+        if (ino[idx] == root) break;
     }
-    return -1;
-}
-void postorder(int root, vector<int> &pre, vector<int> &ino) {  
-    pre.erase(remove(pre.begin(), pre.end(), root));
-    auto it = find(ino.begin(), ino.end(), root);
-    vector<int> left(ino.begin(), it);
-    vector<int> right(it + 1, ino.end());
-    if (!left.empty()) postorder(findRoot(pre, left), pre, left);
-    if (!right.empty()) postorder(findRoot(pre, right), pre, right);
+    int lsize = idx - il;
+    int rsize = size - lsize - 1;
+    if (lsize > 0) postorder(pl + 1, il, lsize);
+    if (rsize > 0) postorder(pl + lsize + 1, idx + 1, rsize);
+    
     cout << root << " ";
 }
 
-void solve() {    
-    vector<int> preorder;
-    vector<int> inorder;
-    init(preorder, inorder);
+void solve() {        
+    init();
 
     int n,  v;    
     cin >> n;
     for (int i = 0; i < n; i++) {        
         cin >> v; 
-        preorder.push_back(v);
+        pre.push_back(v);
     }
     for (int i = 0; i < n; i++) {        
         cin >> v; 
-        inorder.push_back(v);
-    }
-    int root = preorder[0];
-    postorder(root, preorder, inorder);    
+        ino.push_back(v);
+    }    
+    postorder(0, 0, n);    
     cout << "\n";
 }
 
