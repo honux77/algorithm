@@ -40,7 +40,8 @@ int findRoot(vector<int> &pre, vector <int> &ino) {
     }
     return -1;
 }
-void postorder(int root, vector<int> &pre, vector<int> &ino) {   
+void postorder(int root, vector<int> &pre, vector<int> &ino) {  
+    pre.erase(remove(pre.begin(), pre.end(), root));
     auto it = find(ino.begin(), ino.end(), root);
     vector<int> left(ino.begin(), it);
     vector<int> right(it + 1, ino.end());
