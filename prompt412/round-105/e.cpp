@@ -27,30 +27,37 @@ using i64 = long long int;
 using ii = pair<int, int>;
 using ii64 = pair<i64, i64>;
 
+const int N = 10000000;
+bool nprime[N + 1];
+
+void init() {
+    for (int i = 2; i <= N; i++) {        
+        if (nprime[i]) continue;
+        for (int j = i * 2; j <= N; j += i) {
+            nprime[j] = true;
+        }
+    }
+}
+
+int pcount(int n, int m) {
+    int ans = 0;
+    for (int i = n; i <= m; i++) {
+        if (!nprime[i]) ans++;
+    }
+    return ans;
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
-        
-    int n, k;
-    cin >> n;
-    vector<int> books(32);
-    for (int i = 0; i < n; i++) {
-        int s, e;
-        cin >> s >> e;
-        books[s]++;
-        books[e]--;        
-    }
-    cin >> k;
-    int total = 0;
-    for (auto & b: books) {
-        total += b;
-        if (total > k) {
-            cout << "0\n";
-            return 0;
-        }
-    }
 
-    cout << "1\n";    
+    init();
+
+    int n, m;
+    while (cin >> n >> m) {
+        cout << pcount(n, m) << "\n\n";
+    }   
+    
     return 0;
 }
