@@ -9,7 +9,7 @@
 #include <iostream>
 #include <string>
 #include <bitset>
-#include <unordered_set>
+#include <map>
 #include <set>
 #include <tuple>
 #include <random>
@@ -28,11 +28,25 @@ using ii = pair<int, int>;
 using ii64 = pair<i64, i64>;
 
 
-unordered_set<double> seat;
+int a[2001][2001];
+int scount = 0;
+
+int gcd(int a, int b) {
+    while (b != 0) {
+        int t = a % b;
+        a = b;
+        b = t;        
+    }
+    return a;
+}
 
 void add(int n) {
-    for (int i = 1; i <= n; i++) {
-        seat.insert( (double)i / n);
+    for (int i = 1; i < n; i++) {
+        int g = gcd(i, n);            
+        if (a[i / g][n / g] != 1) {
+            scount++;            
+            a[i / g][ n / g] = 1;            
+        }
     }    
 }
 
@@ -46,8 +60,7 @@ int main()
     int ans = 0;
     for (int i = a; i <= b; i++) {
         add(i);
-    }
-    
-    cout << seat.size() << endl;
+    }    
+    cout << scount + 1<< endl;
     return 0;
 }
