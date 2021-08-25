@@ -24,9 +24,9 @@ if [ $? -ne 0 ]; then
 fi
 
 echo "Run $1.."
-
 INPUT=$filename.txt
 echo Input file: $INPUT
+
 case $ext in
     java)
     java $filename < $INPUT

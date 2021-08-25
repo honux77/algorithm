@@ -5,6 +5,8 @@ if [ $# -ne 1 ]; then
     exit 1
 fi
 
+filename=`echo $1 | cut -d "." -f 1`
+
 ext=`echo $1 | cut -d "." -f 2`
 filename=`echo $1 | cut -d "." -f 1`
 
@@ -20,4 +22,5 @@ case $ext in
     ;;
 esac
 
-echo "Don copying $1"
+touch ${filename}.txt
+echo "Done copying $1"
