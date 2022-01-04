@@ -1,4 +1,6 @@
-import sys
+from sys import stdin, stdout
+readline = stdin.readline
+write = stdout.write
 
-a, b = map(int, sys.stdin.readline().rstrip().split())
-sys.stdout.write("{} {}\n".format(a, b))
+a, b = map(int, readline().rstrip().split())
+write("{} {}\n".format(a, b))

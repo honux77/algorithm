@@ -23,10 +23,9 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Run $1.."
-INPUT=$filename.txt
-echo Input file: $INPUT
+INPUT=${filename}.txt
 
+echo "Run $1.."
 case $ext in
     java)
     java $filename < $INPUT
