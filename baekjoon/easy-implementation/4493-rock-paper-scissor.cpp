@@ -27,6 +27,26 @@ using i64 = long long int;
 using ii = pair<int, int>;
 using ii64 = pair<i64, i64>;
 
+void solve() {
+    int n;
+    cin >> n;
+    int w = 0;
+    while (n--) {
+        char p1, p2;
+        cin >> p1 >> p2;        
+        if (p1 == p2) continue;
+        if (p1 == 'R' && p2 == 'S') w++;
+        if (p1 == 'R' && p2 == 'P') w--;
+        if (p1 == 'S' && p2 == 'P') w++;
+        if (p1 == 'S' && p2 == 'R') w--;
+        if (p1 == 'P' && p2 == 'R') w++;
+        if (p1 == 'P' && p2 == 'S') w--;
+    }    
+    if (w > 0) cout << "Player 1\n";
+    else if (w < 0) cout << "Player 2\n";
+    else cout << "TIE\n";
+}
+
 int main()
 {
     ios_base::sync_with_stdio(false);
@@ -35,9 +55,8 @@ int main()
     int t;
     cin >> t;
 
-    while(t--) {
-        cout << t << endl;
-    }
-
+    while(t--) {        
+        solve();
+    }    
     return 0;
 }
