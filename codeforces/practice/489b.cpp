@@ -32,13 +32,38 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     
-    int n;
+    int n, m;
     cin >> n;
-    int ans = 0;
-    while (n != 0) {
-        ans += n % 2;
-        n = n / 2;
+    vector <int> a(n);
+    for (int i = 0; i < n; i++) {
+        cin >> a[i];
     }
-    cout << ans << endl;
- 
+
+    cin >> m;
+    vector <int> b(m);
+    for (int i =0; i < m; i++) {
+        cin >> b[i];
+    }
+
+    sort(a.begin(), a.end());
+    sort(b.begin(), b.end());
+
+    int i = 0;
+    int j = 0;
+    int ans = 0;
+    while (i < n && j < m) {
+        if (abs(a[i] - b[j]) <= 1) {
+            //cout << a[i] << ", " << b[j] << endl;
+            i++;
+            j++;
+            ans++;
+        } else if (a[i] > b[j]) {
+            j++;
+        } else {
+            i++;
+        }
+    }
+
+    cout << ans << "\n";
+    return 0;
 }
