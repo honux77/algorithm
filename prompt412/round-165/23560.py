@@ -1,14 +1,13 @@
 n = int(input())
 r = []
 
-for i in range(n):
+for i in range(1, n + 1):
     b = ['a', 'b', 'c']
     a = [str(i) + s for s in  b]
     r = r + a
 
 d = {}
 total = 0
-print(r)
 
 def eat(a, b):
     global total
@@ -21,8 +20,8 @@ def eat(a, b):
         d[key] = True
     
     if len(b) == 0:
-        # print("다 먹음", a)
         total += 1
+        print("Case {:2d}: {}".format(total, a))        
         return
     
     # 점심
