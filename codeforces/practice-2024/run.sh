@@ -9,6 +9,8 @@ ext=`echo $1 | cut -d "." -f 2`
 filename=`echo $1 | cut -d "." -f 1`
 
 echo "Compile $1.."
+
+# compile 
 case $ext in
     java)
     javac $1
@@ -23,9 +25,10 @@ if [ $? -ne 0 ]; then
     exit 1
 fi
 
-echo "Run $1.."
+# run
+echo "Run $1..."
 INPUT=$filename.txt
-echo Input file: $INPUT
+echo "Input file: $INPUT"
 
 case $ext in
     java)
@@ -37,3 +40,28 @@ case $ext in
     py)
     python3 $1 < $INPUT
 esac
+
+echo "Compare result with $filename-ans.txt... "
+
+case $ext in
+    java)
+    java $filename < $INPUT > result.txt
+    ;;
+    cpp)
+    ./a.out < $INPUT > res
+    ;;
+    py)
+    python3 $1 < $INPUT > result.txt
+esac
+
+diff result.txt $filename-ans.txt
+if [ $? -ne 0 ]; then
+    echo "Wrong Answer"
+    exit 1
+else
+    echo "Accepted"
+fi  
+
+
+rm result.txt
+
