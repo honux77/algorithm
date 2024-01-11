@@ -48,7 +48,7 @@ case $ext in
     java $filename < $INPUT > result.txt
     ;;
     cpp)
-    ./a.out < $INPUT > res
+    ./a.out < $INPUT > result.txt
     ;;
     py)
     python3 $1 < $INPUT > result.txt
@@ -57,11 +57,8 @@ esac
 diff result.txt $filename-ans.txt
 if [ $? -ne 0 ]; then
     echo "Wrong Answer"
-    exit 1
 else
     echo "Accepted"
 fi  
 
-
 rm result.txt
-
