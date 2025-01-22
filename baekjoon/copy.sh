@@ -23,4 +23,5 @@ case $ext in
 esac
 
 touch ${filename}.txt
+touch ${filename}-ans.txt
 echo "Done copying $1"
