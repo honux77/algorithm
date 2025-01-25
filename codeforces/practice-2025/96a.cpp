@@ -32,34 +32,29 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     
-    int n;
-    cin >> n;
-    int ecnt = 0;
-    int ocnt = 0;
-    
-    vector<int> a(n);
-    
-    for (int i = 0; i < n; i++)
+    string s;
+    cin >> s;
+
+    //for each character in the string, check if it is repeated 7 times
+    int count = 1;
+    for (int i = 1; i < s.size(); i++)
     {
-        cin >> a[i];
-        if (a[i] % 2 == 0)
-            ecnt++;
+        if (s[i] == s[i - 1])
+        {
+            count++;
+            if (count == 7)
+            {
+                cout << "YES\n";
+                return 0;
+            }
+        }
         else
-            ocnt++;
-    }
-
-    bool even = ecnt > ocnt;
-
-    for (int i = 0; i < n; i++) {
-        if (!even && a[i] % 2 == 0) {
-            cout << i + 1 << endl;
-            break;
-        }
-        if (even && a[i] % 2 == 1) {
-            cout << i + 1 << endl;
-            break;
+        {
+            count = 1;
         }
     }
 
+    cout << "NO\n";
+    
     return 0;
 }
