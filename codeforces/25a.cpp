@@ -34,6 +34,32 @@ int main()
     
     int n;
     cin >> n;
-    cout << n << "\n";
+    int ecnt = 0;
+    int ocnt = 0;
+    
+    vector<int> a(n);
+    
+    for (int i = 0; i < n; i++)
+    {
+        cin >> a[i];
+        if (a[i] % 2 == 0)
+            ecnt++;
+        else
+            ocnt++;
+    }
+
+    bool even = ecnt > ocnt;
+
+    for (int i = 0; i < n; i++) {
+        if (!even && a[i] % 2 == 0) {
+            cout << i + 1 << endl;
+            break;
+        }
+        if (even && a[i] % 2 == 1) {
+            cout << i + 1 << endl;
+            break;
+        }
+    }
+
     return 0;
 }
