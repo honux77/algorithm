@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [ $# -ne 1 ]; then
+if [ $# -lt 1 ]; then
     echo "usage: $0 filename"
     exit 1
 fi
@@ -41,16 +41,20 @@ case $ext in
     python3 $1 < $INPUT > result.txt
 esac
 
+echo
+echo 'Run Result:'
 cat result.txt
+echo
 
-echo "Compare result with $filename-ans.txt... "
-
-diff result.txt $filename-ans.txt
-
-if [ $? -ne 0 ]; then
-    echo "Wrong Answer"
-else
-    echo "Accepted"
-fi  
+if [ $# -eq 2 ]; then
+    echo "Compare result with $filename-ans.txt... "
+    diff result.txt $filename-ans.txt
+    if [ $? -ne 0 ]; then
+        echo "Wrong Answer"
+        exit 1
+    else
+        echo "Accepted"
+    fi
+fi
 
 rm result.txt

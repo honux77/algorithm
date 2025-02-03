@@ -22,6 +22,11 @@ case $ext in
     ;;
 esac
 
+if [[ "$(uname)" == "Darwin" ]]; then
+    pbpaste > ${filename}.txt
+else
 touch ${filename}.txt
+fi
+
 touch ${filename}-ans.txt
 echo "Done copying $1"
