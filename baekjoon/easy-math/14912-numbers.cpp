@@ -32,19 +32,20 @@ int main()
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     
-    i64 n;
-    cin >> n;
-    int ans = 0;
+    int n, d;
+    i64 cnt = 0;
+    cin >> n >> d;
 
-    while (n != 0) {
-        if (n % 2 == 0) {
-            cout << -1 << endl;
-            return 0;
+    for (int i = 1; i <= n; i++)
+    {
+        int t = i;
+        while (t > 0)
+        {
+            if (t % 10 == d) cnt++;
+            t /= 10;
         }
-        n /= 2;
-        ans++;
     }
-    cout << ans << endl;
 
+    cout << cnt << endl;    
     return 0;
 }
